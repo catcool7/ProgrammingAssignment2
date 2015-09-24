@@ -5,14 +5,14 @@
 ## It must calculate the inverse of 'x' first.
 
 makeCacheMatrix <- function(x = matrix()) {
-     imatrx <<- NULL
-     set.matrx <- function(y) { # Use this to change the 'x' matrix initially entered
-          x <<- y
-          imatrx <<- NULL
+     imatrx <<- NULL # imatrx is inverse matrix name. Initially make sure it does not exist (NULL)
+     set.matrx <- function(y) { # Use this to change the 'x' matrix initially entered to a new one:
+          x <<- y # change the initial matrix
+          imatrx <<- NULL # make sure the inverse matrix does not exist anymore (to solve inverse of matrix 'y')
      }
-     get.matrx <- function() x    # cache the matrix 'x'
+     get.matrx <- function() x    # cache(store) the matrix 'x'
      setsolve <- function(solve) imatrx <<- solve # solve the inverse of matrix 'x'
-     getsolve <- function() imatrx # cache the inverse of matrix 'x' just calculated
+     getsolve <- function() imatrx # cache(store) the inverse of matrix 'x' just calculated
      list(set.matrx = set.matrx, get.matrx = get.matrx, setsolve = setsolve, getsolve = getsolve)
      # one line up stored the 4 functions
 }
@@ -25,12 +25,12 @@ makeCacheMatrix <- function(x = matrix()) {
 cacheSolve <- function(x, ...) {
      ## Return a matrix that is the inverse of 'x'
      imatrx <- x$getsolve() # get the solved inverse matrix of matrix 'x'
-     if(!is.null(imatrx)) { # if the above line resulted in an inverse matrix (not NULL), return inverse
-          message("getting cached data")
-          return(imatrx)
-     } # if no inverse matrix was created, then compute the inverse following steps below
-     data <- x$get.matrx()
-     imatrx <- solve(data,...)
-     x$setsolve(imatrx)
-     imatrx
+     if(!is.null(imatrx)) { # if the above line resulted in an inverse matrix (not NULL), then:
+          message("getting cached data") # this message will pop up first
+          return(imatrx) # cached/stored inverse matrix of 'x' will be returned(& function stops)
+     } # if no inverse matrix was created, then compute the inverse following steps below:
+     data <- x$get.matrx() # get the original matrix
+     imatrx <- solve(data,...) # assign the name of inverse matrix to function
+     x$setsolve(imatrx) # calculate the inverse matrix
+     imatrx # print the inverse matrix
 }
