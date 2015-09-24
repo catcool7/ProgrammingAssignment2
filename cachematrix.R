@@ -1,7 +1,7 @@
 ## Overall Description: Compute the inverse of a matrix, cache the inverse, and retrieve the inverse.
 ## Note: Matrix 'x' cannot be a singular matrix, and must be a square matrix to invert.
 
-## This function creates an object that is the inverse of the matrix 'x'. 
+## makeCacheMatrix function creates an object that is the inverse of the matrix 'x'. 
 ## It must calculate the inverse of 'x' first.
 
 makeCacheMatrix <- function(x = matrix()) {
@@ -18,7 +18,7 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## This functions returns the inverse of the matrix 'x' that was cached in makeCacheMatrix.
+## cacheSolve function returns the inverse of the matrix 'x' that was cached in makeCacheMatrix.
 ## If the inverse of the matrix was not cached already, then this function will calculate
 ## the inverse of the matrix 'x' and return it.
 
